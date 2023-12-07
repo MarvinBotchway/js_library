@@ -24,7 +24,11 @@ myLibrary.push(new Book(
 myLibrary.forEach((book) => {
     let listItem = document.createElement("li");
     let bookCard = document.createElement("div");
-    bookCard.textContent = book.title;
+    bookCard.innerHTML = 
+    `<p>${book.title}</p>` +
+    `<p><span>Author</span> ${book.author}</p>` +
+    `<p><span>Pages</span> ${book.pages}</p>` +
+    `<p><span>Read<span> ${book.read}</p>`;
    
     listItem.appendChild(bookCard);
     bookList.appendChild(listItem);
