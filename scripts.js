@@ -1,5 +1,10 @@
 const bookListContainer = document.querySelector(".container");
+const addBookButton = document.querySelector("#add-book");
+const dialog = document.querySelector("dialog");
+
 const bookList = document.createElement("ul");
+
+addBookButton.addEventListener("click", () => dialog.showModal());
 
 const myLibrary = [];
 
@@ -27,6 +32,10 @@ myLibrary.push(new Book(
 "",
 "Chimamanda Ngozi Adichie", "240", false));
 
+function addBookToLibrary() {
+
+} 
+
 
 
 myLibrary.forEach((book) => {
@@ -48,5 +57,3 @@ myLibrary.forEach((book) => {
 
 bookListContainer.appendChild(bookList);
 
-function addBookToLibrary() {
-}

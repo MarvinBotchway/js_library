@@ -7,7 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container"></div>
+    <div class="container">
+        <button id="add-book">New Book</button>
+        <dialog>
+            <h3>New Book</h3>
+            <form method="dialog">
+                <span>
+                    <label for="title">Title</label>
+                    <input id="title" type="text">
+                </span>
+                <span>
+                    <label for="author">Author</label>
+                    <input id="author" type="text">
+                </span>
+                <span>
+                    <label for="pages">Pages</label>
+                    <input id="pages" type="text">
+                </span>
+                <span>
+                    <label for="image-url">Image Url</label>
+                    <input id="image-url" type="text">
+                </span>
+                <span>
+                    <input id="read" type="checkbox"> 
+                    <label for="read">Mark As Read</label>
+                </span>
+                
+                <button type="submit">Add</button>
+            </form>
+        </dialog>
+          
+    </div>
     <script src="scripts.js"></script>
 </body>
 </html>
