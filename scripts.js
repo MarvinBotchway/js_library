@@ -46,7 +46,7 @@ function addBookToLibrary() {
 
 function createBookListHTML() {
     if(BookList.hasChildNodes) removeBookListHTML();
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, i) => {
         let listItem = document.createElement("li");
         let bookCard = document.createElement("div");
         bookCard.innerHTML =
@@ -54,14 +54,32 @@ function createBookListHTML() {
             <h3>${book.title}</h3>
             <img src=${book.imgUrl}>
         </div>` +
-        `<p><span>Author</span>: ${book.author}</p>` +
-        `<p><span>Pages</span>: ${book.pages}</p>` +
-        `<p><span>Read</span>: ${book.read}</p>`;
+        `<div>
+            <p><span>Author</span>: ${book.author}</p>
+            <p><span>Pages</span>: ${book.pages}</p>
+            <p>${book.read ? "Read" : "Not Read"}</p>
+        </div>`;
         bookCard.classList += "card";
-    
+
+        const readButton = document.createElement("button");
+        readButton.textContent = book.read ? "Mark As Unread" : "Mark As Read";
+        readButton.dataset.id = i;
+        
+        bookCard.append(readButton);
+
+        readButton.addEventListener("click", toggleRead);
+
         listItem.appendChild(bookCard);
         BookList.appendChild(listItem);
     });
+}
+
+function toggleRead(e) {
+    let id = e.target.dataset.id;
+    
+    myLibrary[id].read = myLibrary[id].read ? false : true;
+    removeBookListHTML();
+    createBookListHTML();
 }
 
 function removeBookListHTML() {
