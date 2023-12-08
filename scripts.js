@@ -1,20 +1,13 @@
-const bookListContainer = document.querySelector(".container");
-const addBookButton = document.querySelector("#add-book");
-const dialog = document.querySelector("dialog");
-const newBookForm = document.querySelector("#new-book-form");
+const BookListContainer = document.querySelector(".container");
+const AddBookButton = document.querySelector("#add-book");
+const Dialog = document.querySelector("dialog");
+const NewBookForm = document.querySelector("#new-book-form");
 
-const bookList = document.createElement("ul");
-
-newBookForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    addBookToLibrary();
-    newBookForm.reset();
-    dialog.close();
-});
-
-addBookButton.addEventListener("click", () => dialog.showModal());
-
+const BookList = document.querySelector("#book-list");
 const myLibrary = [];
+
+AddBookButton.addEventListener("click", () => Dialog.showModal());
+NewBookForm.addEventListener("submit", submitNewBookForm);
 
 function Book(title, imgUrl, author, pages, read) {
     if (!imgUrl) imgUrl = "https://placehold.co/258x375";
@@ -30,15 +23,12 @@ myLibrary.push(new Book(
 "https://upload.wikimedia.org/wikipedia/en/6/65/ThingsFallApart.jpg",
 "Chinua Achebe", "155", true));
 
-myLibrary.push(new Book(
-"Purple Hibiscus",
-"",
-"Chimamanda Ngozi Adichie", "336", false));
-
-myLibrary.push(new Book(
-"The Thing Around Your Neck",
-"",
-"Chimamanda Ngozi Adichie", "240", false));
+function submitNewBookForm(e) {
+    e.preventDefault();
+    addBookToLibrary();
+    NewBookForm.reset();
+    Dialog.close();
+}
 
 function addBookToLibrary() {
     let title = document.querySelector("#title").value;
@@ -54,7 +44,7 @@ function addBookToLibrary() {
 
 
 function createBookListHTML() {
-    if(bookList.hasChildNodes) removeBookListHTML();
+    if(BookList.hasChildNodes) removeBookListHTML();
     myLibrary.forEach((book) => {
         let listItem = document.createElement("li");
         let bookCard = document.createElement("div");
@@ -69,16 +59,14 @@ function createBookListHTML() {
         bookCard.classList += "card";
     
         listItem.appendChild(bookCard);
-        bookList.appendChild(listItem);
+        BookList.appendChild(listItem);
     });
 }
 
 function removeBookListHTML() {
-    while(bookList.firstChild) {
-        bookList.removeChild(bookList.firstChild);
+    while(BookList.firstChild) {
+        BookList.removeChild(BookList.firstChild);
     }
 }
 
 createBookListHTML();
-bookListContainer.appendChild(bookList);
-
