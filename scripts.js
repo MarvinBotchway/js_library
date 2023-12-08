@@ -8,6 +8,7 @@ const myLibrary = [];
 
 AddBookButton.addEventListener("click", () => Dialog.showModal());
 NewBookForm.addEventListener("submit", submitNewBookForm);
+Dialog.addEventListener("click", closeOnClick);
 
 function Book(title, imgUrl, author, pages, read) {
     if (!imgUrl) imgUrl = "https://placehold.co/258x375";
@@ -67,6 +68,11 @@ function removeBookListHTML() {
     while(BookList.firstChild) {
         BookList.removeChild(BookList.firstChild);
     }
+}
+
+function closeOnClick(e) {
+    let dialog = e.target;
+    if (dialog.nodeName === "DIALOG") dialog.close();
 }
 
 createBookListHTML();
