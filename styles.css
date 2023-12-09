@@ -58,6 +58,20 @@ button:hover {
     background-color: aliceblue;
 }
 
+.card button{
+    margin-right: 12px;
+}
+
+#read-button:hover {
+    color: darkcyan;
+    background-color: aliceblue;
+}
+
+#remove-button:hover {
+    color: red;
+    background-color: aliceblue;
+}
+
 ul {
     display: flex;
     list-style-type: none;

@@ -60,14 +60,25 @@ function createBookListHTML() {
             <p>${book.read ? "Read" : "Not Read"}</p>
         </div>`;
         bookCard.classList += "card";
-
+        
+        // Add readButton
         const readButton = document.createElement("button");
+        readButton.id = "read-button";
         readButton.textContent = book.read ? "Mark As Unread" : "Mark As Read";
         readButton.dataset.id = i;
         
-        bookCard.append(readButton);
-
         readButton.addEventListener("click", toggleRead);
+        
+        // Add removeButton
+        const removeButton = document.createElement("button");
+        removeButton.id = "remove-button";
+        removeButton.textContent = "Remove";
+        removeButton.dataset.id = i;
+        
+        removeButton.addEventListener("click", removeBook);
+               
+        bookCard.append(readButton);
+        bookCard.append(removeButton);
 
         listItem.appendChild(bookCard);
         BookList.appendChild(listItem);
@@ -78,6 +89,14 @@ function toggleRead(e) {
     let id = e.target.dataset.id;
     
     myLibrary[id].read = myLibrary[id].read ? false : true;
+    removeBookListHTML();
+    createBookListHTML();
+}
+
+function removeBook(e) {
+    let id = e.target.dataset.id;
+
+    myLibrary.splice(id, 1);
     removeBookListHTML();
     createBookListHTML();
 }
