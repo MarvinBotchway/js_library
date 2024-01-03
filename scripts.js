@@ -4,7 +4,6 @@ const Dialog = document.querySelector("dialog");
 const NewBookForm = document.querySelector("#new-book-form");
 
 const BookList = document.querySelector("#book-list");
-const myLibrary = [];
 
 AddBookButton.addEventListener("click", () => Dialog.showModal());
 NewBookForm.addEventListener("submit", submitNewBookForm);
@@ -20,7 +19,28 @@ class Book {
   }
 }
 
-myLibrary.push(
+class Library {
+  constructor() {
+    this.bookList = [];
+  }
+
+  addBook(book) {
+    this.bookList.push(book);
+  }
+
+  removeBook(id) {
+    this.bookList.splice(id, 1);
+  }
+
+  toggleRead(id) {
+    this.bookList[id].read = this.bookList[id].read ? false : true;
+  }
+}
+
+const myLibrary = new Library();
+
+// Filler Data
+myLibrary.addBook(
   new Book(
     "Things Fall Apart",
     "https://upload.wikimedia.org/wikipedia/en/6/65/ThingsFallApart.jpg",
@@ -45,14 +65,14 @@ function addBookToLibrary() {
   let read = document.querySelector("#read").checked;
 
   if (!imageUrl) imageUrl = "https://placehold.co/258x375";
-  myLibrary.push(new Book(title, imageUrl, author, pages, read));
+  myLibrary.addBook(new Book(title, imageUrl, author, pages, read));
 
   createBookListHTML();
 }
 
 function createBookListHTML() {
   if (BookList.hasChildNodes) removeBookListHTML();
-  myLibrary.forEach((book, i) => {
+  myLibrary.bookList.forEach((book, i) => {
     let listItem = document.createElement("li");
     let bookCard = document.createElement("div");
     bookCard.innerHTML =
@@ -94,7 +114,7 @@ function createBookListHTML() {
 function toggleRead(e) {
   let id = e.target.dataset.id;
 
-  myLibrary[id].read = myLibrary[id].read ? false : true;
+  myLibrary.toggleRead(id);
   removeBookListHTML();
   createBookListHTML();
 }
@@ -102,7 +122,7 @@ function toggleRead(e) {
 function removeBook(e) {
   let id = e.target.dataset.id;
 
-  myLibrary.splice(id, 1);
+  myLibrary.removeBook(id);
   removeBookListHTML();
   createBookListHTML();
 }
