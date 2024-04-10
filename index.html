@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="toolbar">
-        <button id="add-book">Add Book</button>
-        <h1>LIBRARY</h1>
+      <button id="add-book">Add Book</button>
+      <h1>LIBRARY</h1>
     </div>
     <div class="container">
-        
-        <dialog>
-            <h3>New Book</h3>
-            <form id="new-book-form" method="dialog">
-                <span>
-                    <label for="title">Title</label>
-                    <input id="title" type="text">
-                </span>
-                <span>
-                    <label for="author">Author</label>
-                    <input id="author" type="text">
-                </span>
-                <span>
-                    <label for="pages">Number Of Pages</label>
-                    <input id="pages" type="text">
-                </span>
-                <span>
-                    <label for="image-url">Image Url</label>
-                    <input id="image-url" type="text">
-                </span>
-                <span>
-                    <input id="read" type="checkbox"> 
-                    <label for="read">Mark As Read</label>
-                </span>
-                
-                <button type="submit">Add</button>
-            </form>
-        </dialog>
-        <ul id="book-list"></ul>
+      <dialog>
+        <h3>New Book</h3>
+        <form id="new-book-form" method="dialog">
+          <span>
+            <label for="title">Title</label>
+            <input id="title" type="text" required />
+          </span>
+          <span>
+            <label for="author">Author</label>
+            <input id="author" type="text" required />
+          </span>
+          <span>
+            <label for="pages">Number Of Pages</label>
+            <input id="pages" type="text" required />
+          </span>
+          <span>
+            <label for="image-url">Image Url</label>
+            <input id="image-url" type="url" required />
+          </span>
+          <span>
+            <input id="read" type="checkbox" required />
+            <label for="read">Mark As Read</label>
+          </span>
+
+          <button type="submit">Add</button>
+        </form>
+      </dialog>
+      <ul id="book-list"></ul>
     </div>
     <script src="scripts.js"></script>
-</body>
+  </body>
 </html>
